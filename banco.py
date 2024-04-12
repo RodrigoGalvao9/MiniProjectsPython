@@ -67,108 +67,141 @@
 
 
 
+import re
+
 class Menu:
     
     @staticmethod
     def menu_inicial():
-            while True:
-                print("----- Menu Principal -----")
-                print("""[d] Depositar
-                        [s] Sacar
-                        [e] Extrato
-                        [q] Sair
-                      """)
-                
-                opcao = input("Escolha uma opção: ").lower()
-                
-                if opcao == 'd':
-                    #chamar método da classe deposito
-                elif opcao == 's':
-                    #chamar método da classe saque
-                elif opcao == 'e':
-                    #chamar método da classe extrato
-                elif opcao == 'q':
-                    print("Encerrando sistema...")
-                    break
-                else:
-                    print("Opção inválida. Por favor escolha uma opção válida!")
-                
+        while True:
+            print("----- Menu Principal -----")
+            print("""
+                    [d] Depositar
+                    [s] Sacar
+                    [e] Extrato
+                    [q] Sair
+                  """)
+            
+            opcao = input("Escolha uma opção: ").lower()
+            
+            if opcao == 'd':
+                Banco.depositar()
+            elif opcao == 's':
+                Banco.sacar()
+            elif opcao == 'e':
+                Banco.exibir_extrato()
+            elif opcao == 'q':
+                print("Encerrando sistema...")
+                break
+            else:
+                print("Opção inválida. Por favor, escolha uma opção válida!")
+
 
 class Banco:
     
+    saldo = 0
+    extrato = []
+    limite_saques = 3
+    
     @staticmethod
-    def depositar(saldo,valor, extrato):
-        saldo += valor
-        extrato.append(f"Déposito de `{valor}")
-        print(f"Depósito de {valor}, realizado com sucesso!")
-        print(f"Seu saldo atual é: {saldo}")   
-        
-    @staticmethod
-    def sacar(saldo, valor, extrato, numero_saques, limite_saques):
-        
-        limite_saques = 3
-        print("Só pode ser realizado 3 saques por vez!!")
+    def depositar():
         try:
-            numero_saques = int(input("Quantos saques você vai realizar? "))
+            valor = float(input("Digite o valor a depositar: "))
+            Banco.saldo += valor
+            Banco.extrato.append(f"Déposito de {valor}")
+            print(f"Depósito de {valor}, realizado com sucesso!")
+            print(f"Seu saldo atual é: {Banco.saldo}")
         except ValueError:
-            print("Por favor, insira um número inteiro válido.")
-        
-        
-        if numero_saques <= limite_saques:
-            for i in range(numero_saques):
-                valor = float(input("Digite o valor do seu saque:"))
-                if valor <= saldo:
-                    saldo -= valor
-                    extrato.append(f"Saque de {valor}")
-                    print("Realizado com sucesso!!")
-                else:
-                    print("Seu saldo é menor que o valor do saque!")
-                    return (f"Seu saldo atual é: {saldo}")
-        else:
-            print("Você excedeu o numeros limite de saques!")
-        
+            print("Por favor, insira um valor numérico válido.")
 
     @staticmethod
-    def exibir_extrato(saldo, extrato):
+    def sacar():
+        try:
+            print("Só podem ser realizados 3 saques por vez!")
+            numero_saques = int(input("Quantos saques você vai realizar? "))
+            if numero_saques <= Banco.limite_saques:
+                for _ in range(numero_saques):
+                    valor = float(input("Digite o valor do seu saque: "))
+                    if valor <= Banco.saldo:
+                        Banco.saldo -= valor
+                        Banco.extrato.append(f"Saque de {valor}")
+                        print("Saque realizado com sucesso!")
+                    else:
+                        print("Seu saldo é menor que o valor do saque!")
+            else:
+                print("Você excedeu o número limite de saques!")
+        except ValueError:
+            print("Por favor, insira um valor numérico válido para o número de saques.")
+
+    @staticmethod
+    def exibir_extrato():
         print("----- Extrato -----")
-        print(f"Saldo atual: {saldo}")
+        print(f"Saldo atual: {Banco.saldo}")
         print("Transações:")
-        for transacao in extrato:
+        for transacao in Banco.extrato:
             print(transacao)
-        
-    
 
 
 class Usuario:
     
+    @staticmethod
     def criar_usuario(usuarios):
         try:
-            novo_usuario = input("Digite o nome do seu usuário").lower()
-            cpf = input("Digite seu cpf:")
+            novo_usuario = input("Digite o nome do seu usuário: ").lower()
+            cpf = input("Digite seu CPF: ")
             if novo_usuario in usuarios:
                 print("Esse usuário já existe!!")
-            elif len(cpf) != 9 or not cpf.isnumeric():
-                print("O cpf deve conter 9 números")
+            elif not re.match(r'^\d{9}$', cpf):
+                print("O CPF deve conter exatamente 9 números.")
             else:
                 usuarios[novo_usuario] = cpf
         except Exception as e:
             print(f"Ocorreu um erro {e}")
-        
-    def filtrar_usuario(cpf, usuarios):
+
+    @staticmethod
+    def filtrar_usuario(usuarios):
         try:
-            
-        
-        
-    def criar_contas(agencia, numero_conta, usuarios):
-        
-        
-        
-    def listar_contas(contas):
-        
-        
-        
-        
-        
-        
-        
-        
+            cpf = input("Digite o CPF do usuário que você quer filtrar: ")
+            for nome, cpf_usuario in usuarios.items():
+                if cpf_usuario == cpf:
+                    return f"Este é o usuário que você procurou: {nome}"
+            print("Usuário não encontrado.")
+        except Exception as e:
+            print(f"Algum erro ocorreu! {e}")
+
+    @staticmethod
+    def criar_contas(contas_existentes, usuarios):
+        try:
+            criar_contas = input("Você deseja criar uma conta? (y/n)").lower()
+            if criar_contas == "y":
+                nome_usuario = input("Digite o nome do usuário para criar a conta: ").lower()
+                if nome_usuario in contas_existentes:
+                    print("Esse usuário já possui uma conta!")
+                    return
+                agencia = input("Digite o número da agência: ")
+                numero_conta = input("Digite o número da conta: ")
+                contas_existentes[nome_usuario] = {"agencia": agencia, "numero_conta": numero_conta}
+                print("Conta criada com sucesso!")
+            else:
+                print("Criação de conta cancelada.")
+        except Exception as e:
+            print(f"Ocorreu um erro ao criar a conta: {e}")
+
+    @staticmethod
+    def listar_contas(contas_existentes):
+        try:
+            nome_conta = input("Digite o nome da conta que você quer procurar: ").lower()
+            informacoes_conta = contas_existentes.get(nome_conta)
+            if informacoes_conta:
+                print(f"Informações da conta para {nome_conta}: {informacoes_conta}")
+            else:
+                print("Conta não encontrada.")
+        except Exception as e:
+            print(f"Ocorreu um erro ao listar a conta: {e}")
+
+
+# Exemplo de uso:
+usuarios = {}
+contas_existentes = {}
+
+Menu.menu_inicial()
