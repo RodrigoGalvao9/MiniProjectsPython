@@ -1,1 +1,19 @@
+- label: novas-funcionalidades
+  if: contains(github.event.pull_request.title, 'feature/')
+  color: '36AF6D'
 
+- label: correcao-de-bugs
+  if: contains(github.event.pull_request.title, 'bugfix/')
+  color: 'D73A4A'
+
+- label: correcoes-urgentes
+  if: contains(github.event.pull_request.title, 'hotfix/')
+  color: 'FFA500'
+
+- label: preparacao-de-versao
+  if: contains(github.event.pull_request.title, 'release/')
+  color: 'FFD700'
+
+- label: atualizacao-de-documentacao
+  if: contains(github.event.pull_request.title, 'docs/')
+  color: '0075ca'
