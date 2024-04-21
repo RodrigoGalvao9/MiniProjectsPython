@@ -12,16 +12,16 @@ Os métodos de instância geralmente são usados para manipular ou interagir com
 """
 
 #Teste 1:
-# class ClasseTeste:
-#     def __init__(self, valor):
-#         self.valor = valor
+class ClasseTeste:
+    def __init__(self, valor):
+        self.valor = valor
     
-#     def mostrar_valor(self):
-#         print("O valor é:", self.valor)
+    def mostrar_valor(self):
+        print("O valor é:", self.valor)
 
-# objeto = ClasseTeste(10)
+objeto = ClasseTeste(10)
 
-# objeto.mostrar_valor() 
+objeto.mostrar_valor() 
 
 
 
