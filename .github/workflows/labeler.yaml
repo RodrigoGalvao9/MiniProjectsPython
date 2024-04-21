@@ -10,6 +10,12 @@ jobs:
       contents: read
       pull-requests: write
     steps:
+      - name: Debugging Step
+        run: |
+          echo "This is a debug message"
+          echo "Current directory: $(pwd)"
+          echo "List files: $(ls -la)"
+      
       - uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
