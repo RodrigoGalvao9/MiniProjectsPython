@@ -1,20 +1,31 @@
-rules:
-  - label: novas-funcionalidades
-    types: [opened]
-    pattern: 'feature/*'
-
-  - label: correcao-de-bugs
-    types: [opened]
-    pattern: 'bugfix/*'
-
-  - label: correcoes-urgentes
-    types: [opened]
-    pattern: 'hotfix/*'
-
-  - label: preparacao-de-versao
-    types: [opened]
-    pattern: 'release/*'
-
-  - label: atualizacao-de-documentacao
-    types: [opened]
-    pattern: 'docs/*'
+---
+novas-funcionalidades:
+  - types:
+      - opened
+      - reopened
+      - synchronize
+    pattern: ^(feature\/.+)$
+correcao-de-bugs:
+  - types:
+      - opened
+      - reopened
+      - synchronize
+    pattern: ^(bugfix\/.+)$
+correcoes-urgentes:
+  - types:
+      - opened
+      - reopened
+      - synchronize
+    pattern: ^(hotfix\/.+)$
+preparacao-de-versao:
+  - types:
+      - opened
+      - reopened
+      - synchronize
+    pattern: ^(release\/.+)$
+atualizacao-de-documentacao:
+  - types:
+      - opened
+      - reopened
+      - synchronize
+    pattern: ^(docs\/.+)$
