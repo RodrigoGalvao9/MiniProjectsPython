@@ -1,31 +1,3 @@
----
 novas-funcionalidades:
-  - types:
-      - opened
-      - reopened
-      - synchronize
-    pattern: ^(feature\/.+)$
-correcao-de-bugs:
-  - types:
-      - opened
-      - reopened
-      - synchronize
-    pattern: ^(bugfix\/.+)$
-correcoes-urgentes:
-  - types:
-      - opened
-      - reopened
-      - synchronize
-    pattern: ^(hotfix\/.+)$
-preparacao-de-versao:
-  - types:
-      - opened
-      - reopened
-      - synchronize
-    pattern: ^(release\/.+)$
-atualizacao-de-documentacao:
-  - types:
-      - opened
-      - reopened
-      - synchronize
-    pattern: ^(docs\/.+)$
+  - types: [opened]
+    pattern: '^(feature\/.+)'
