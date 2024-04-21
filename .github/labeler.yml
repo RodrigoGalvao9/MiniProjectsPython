@@ -1,19 +1,19 @@
-- label: novas-funcionalidades
-  if: contains(github.event.pull_request.title, 'feature/')
-  color: '36AF6D'
+novas-funcionalidades:
+  - types: [opened]
+    pattern: '^(feature\/.+)'
 
-- label: correcao-de-bugs
-  if: contains(github.event.pull_request.title, 'bugfix/')
-  color: 'D73A4A'
+correcao-de-bugs:
+  - types: [opened]
+    pattern: '^(bugfix\/.+)'
 
-- label: correcoes-urgentes
-  if: contains(github.event.pull_request.title, 'hotfix/')
-  color: 'FFA500'
+correcoes-urgentes:
+  - types: [opened]
+    pattern: '^(hotfix\/.+)'
 
-- label: preparacao-de-versao
-  if: contains(github.event.pull_request.title, 'release/')
-  color: 'FFD700'
+preparacao-de-versao:
+  - types: [opened]
+    pattern: '^(release\/.+)'
 
-- label: atualizacao-de-documentacao
-  if: contains(github.event.pull_request.title, 'docs/')
-  color: '0075ca'
+atualizacao-de-documentacao:
+  - types: [opened]
+    pattern: '^(docs\/.+)'
