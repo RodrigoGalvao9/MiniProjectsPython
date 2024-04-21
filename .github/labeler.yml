@@ -1,19 +1,20 @@
-novas-funcionalidades:
-  - types: [opened]
-    pattern: '^(feature\/.+)'
+rules:
+  - label: novas-funcionalidades
+    types: [opened]
+    pattern: 'feature/*'
 
-correcao-de-bugs:
-  - types: [opened]
-    pattern: '^(bugfix\/.+)'
+  - label: correcao-de-bugs
+    types: [opened]
+    pattern: 'bugfix/*'
 
-correcoes-urgentes:
-  - types: [opened]
-    pattern: '^(hotfix\/.+)'
+  - label: correcoes-urgentes
+    types: [opened]
+    pattern: 'hotfix/*'
 
-preparacao-de-versao:
-  - types: [opened]
-    pattern: '^(release\/.+)'
+  - label: preparacao-de-versao
+    types: [opened]
+    pattern: 'release/*'
 
-atualizacao-de-documentacao:
-  - types: [opened]
-    pattern: '^(docs\/.+)'
+  - label: atualizacao-de-documentacao
+    types: [opened]
+    pattern: 'docs/*'
