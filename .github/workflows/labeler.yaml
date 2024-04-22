@@ -1,17 +1,22 @@
-name: "Pull Request Labeler"
+name: Pull Request Labeler
 on:
-  pull_request_target:
-    types: [opened]
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
   labeler:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Configure labeler
-        uses: actions/labeler@v5
+      - name: Debugging Step
+        run: |
+          echo "This is a debug message"
+          echo "Current directory: $(pwd)"
+          echo "List files: $(ls -la)"
+      
+      - uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: .github/labeler.yml
