@@ -7,3 +7,9 @@ client = MongoClient(connection_string)
 
 if client:
     print("conectando ao servidor")
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome"}
