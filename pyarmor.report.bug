@@ -1,0 +1,29 @@
+[Bug] CliError: no found input "options"
+
+### Full command options and console output
+c:\Users\rodri\Área de Trabalho\codigo\MiniProjectsPython\.conda\Scripts\pyarmor -d gen options
+
+2024-04-27 19:36:54,303 Python 3.12.3
+2024-04-27 19:36:54,303 Pyarmor 8.5.7 (trial), 000000, non-profits
+2024-04-27 19:36:54,304 Platform windows.x86_64
+2024-04-27 19:36:54,305 native platform windows.amd64
+2024-04-27 19:36:54,305 home path: C:\Users\rodri\.pyarmor
+2024-04-27 19:36:54,305 command options: {'no_runtime': False, 'inputs': ['options']}
+2024-04-27 19:36:54,306 install plugin: CodesignPlugin
+2024-04-27 19:36:54,306 install plugin: DarwinUniversalPlugin
+2024-04-27 19:36:54,306 no found input "options"
+
+
+### Traceback
+Traceback (most recent call last):
+  File "c:\Users\rodri\Área de Trabalho\codigo\MiniProjectsPython\.conda\Lib\site-packages\pyarmor\cli\__main__.py", line 769, in main
+    main_entry(sys.argv[1:])
+  File "c:\Users\rodri\Área de Trabalho\codigo\MiniProjectsPython\.conda\Lib\site-packages\pyarmor\cli\__main__.py", line 757, in main_entry
+    return args.func(ctx, args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\rodri\Área de Trabalho\codigo\MiniProjectsPython\.conda\Lib\site-packages\pyarmor\cli\__main__.py", line 249, in cmd_gen
+    builder.process(options)
+  File "c:\Users\rodri\Área de Trabalho\codigo\MiniProjectsPython\.conda\Lib\site-packages\pyarmor\cli\generate.py", line 150, in process
+    raise CliError('no found input "%s"' % opt)
+pyarmor.cli.CliError: no found input "options"
+
