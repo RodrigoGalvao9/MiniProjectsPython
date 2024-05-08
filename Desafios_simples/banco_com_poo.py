@@ -1,6 +1,19 @@
 import re
+from datetime import timedelta, datetime, timezone
 DIGITE_NOME_CONTA = "Digite o nome da conta:"
 CONTA_NAO_ENCONTRADA = "Conta não encontrada"
+
+def log_decorat(func):
+    def wrapper(*args, **kwargs):
+        # Obtém o tempo atual em UTC-8
+        current_time = datetime.now(timezone(timedelta(hours=-8)))
+        # Formata a data e hora para registro
+        formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
+        # Registra a chamada da função junto com a hora
+        print(f"{formatted_time} - Chamada da função {func.__name__}")
+        # Chama a função original
+        return func(*args, **kwargs)
+    return wrapper
 
 class Menu:
     
@@ -39,6 +52,7 @@ class Menu:
 class Banco:
     
     @staticmethod
+    @log_decorat
     def depositar(nome_conta):
         try:
             valor = float(input("Digite o valor a depositar: "))
@@ -51,6 +65,7 @@ class Banco:
             print("Por favor, insira um valor numérico válido.")
 
     @staticmethod
+    @log_decorat
     def sacar(nome_conta):
         try:
             usuario = Usuario()
@@ -63,6 +78,7 @@ class Banco:
             print("Por favor, insira um valor numérico válido.")
 
     @staticmethod
+    @log_decorat
     def exibir_extrato(nome_conta):
         usuario = Usuario()
         if usuario.conta_existe(nome_conta):
@@ -77,6 +93,7 @@ class Usuario:
         self.usuarios = {}
         self.contas_existentes = {}
 
+    @log_decorat
     def criar_usuario(self):
         try:
             novo_usuario = input("Digite o nome do seu usuário: ").lower()
@@ -90,6 +107,7 @@ class Usuario:
         except Exception as e:
             print(f"Ocorreu um erro {e}")
 
+    @log_decorat
     def criar_conta(self):
         try:
             nome_usuario = input("Digite o nome do usuário para associar a conta: ").lower()
@@ -107,6 +125,7 @@ class Usuario:
         except Exception as e:
             print(f"Ocorreu um erro ao criar a conta: {e}")
 
+    @log_decorat
     def listar_contas(self):
         nome_usuario = input("Digite o nome do usuário para listar suas contas: ").lower()
         contas_usuario = [conta for conta, dados in self.contas_existentes.items() if dados["usuario"] == nome_usuario]
@@ -139,7 +158,6 @@ class Usuario:
         print("Transações:")
         for transacao in self.contas_existentes[nome_conta]["extrato"]:
             print(transacao)
-
 
 # Exemplo de uso:
 usuarios = {}
