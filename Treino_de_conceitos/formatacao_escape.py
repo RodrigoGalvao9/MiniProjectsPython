@@ -19,6 +19,3 @@ print("%e" % dec)
 print("%e" % 7.6)
 print("%o" % 7)
 print("%x" % 76)
-
-
-

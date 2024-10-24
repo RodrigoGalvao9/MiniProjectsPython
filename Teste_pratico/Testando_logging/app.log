@@ -1,0 +1,10 @@
+2024-10-24 09:47:31,493 - DEBUG - Mensagem de depuração (debug)
+2024-10-24 09:47:31,493 - INFO - Informação útil (info)
+2024-10-24 09:47:31,493 - WARNING - Aviso (warning)
+2024-10-24 09:47:31,493 - ERROR - Erro detectado (error)
+2024-10-24 09:47:31,494 - CRITICAL - Erro crítico (critical)
+2024-10-24 09:47:53,001 - DEBUG - Mensagem de depuração
+2024-10-24 09:47:53,001 - INFO - Informação útil
+2024-10-24 09:47:53,001 - WARNING - Avis
+2024-10-24 09:47:53,001 - ERROR - Erro detectado
+2024-10-24 09:47:53,001 - CRITICAL - Erro crítico

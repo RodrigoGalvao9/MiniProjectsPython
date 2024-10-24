@@ -1,0 +1,3 @@
+2024-10-24 09:59:04,730 - meu_logger_formatado - INFO - Mensagem de informação com formato customizado.
+2024-10-24 09:59:04,730 - meu_logger_formatado - WARNING - Esta mensagem de aviso será capturada, pois é superior a INFO.
+2024-10-24 09:59:04,730 - meu_logger_formatado - ERROR - Mensagem de erro com formato customizado.
